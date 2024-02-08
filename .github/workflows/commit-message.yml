@@ -1,0 +1,18 @@
+name: Commit message check
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+jobs:
+  commit-message-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check commit message and Jira reference
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\([\w\-\.]+\))?(!)?: ([\w ])+([\s\S]*) #ERC-[0-9]+'
+          error: 'Your commit must comply with conventional commits - https://www.conventionalcommits.org/en/v1.0.0'

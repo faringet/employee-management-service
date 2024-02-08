@@ -1,0 +1,1301 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Template API service",
+        "title": "Template API",
+        "contact": {}
+    },
+    "basePath": "/api/v1/template",
+    "paths": {
+        "/communication": {
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Create communication template record",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "communication"
+                ],
+                "summary": "Create communication template",
+                "parameters": [
+                    {
+                        "description": "Create request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.CreateCommunicationTemplateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.CommunicationTemplateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "401": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "403": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        },
+        "/communication/entity/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get communication template records by entity id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "communication"
+                ],
+                "summary": "Get communication templates",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json with empty response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/endpoints.CommunicationTemplateResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "401": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "403": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        },
+        "/communication/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get communication template record by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "communication"
+                ],
+                "summary": "Get communication template",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json with empty response",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.CommunicationTemplateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "401": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "403": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Update communication template record by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "communication"
+                ],
+                "summary": "Update communication template",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.UpdateCommunicationTemplateByIDRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json with empty response",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.CommunicationTemplateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "401": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "403": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Delete communication template record by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "communication"
+                ],
+                "summary": "Delete communication template",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json with empty response",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.EmptyResponseSample"
+                        }
+                    },
+                    "400": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "401": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "403": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        },
+        "/communication/{id}/entity": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get communication template with entity record by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "communication"
+                ],
+                "summary": "Get communication template",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json with empty response",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.CommunicationTemplateWithEntityResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "401": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "403": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "json with error msg",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        },
+        "/ping": {
+            "get": {
+                "description": "Ping Request",
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "ping"
+                ],
+                "summary": "Ping Request",
+                "responses": {
+                    "200": {
+                        "description": "pong",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/template/questionaries": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get TemplateQuestionaries",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TemplateQuestionaries"
+                ],
+                "summary": "Get TemplateQuestionaries",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.GetTemplateQuestionariesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Create TemplateQuestionaries",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TemplateQuestionaries"
+                ],
+                "summary": "Create TemplateQuestionaries",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.CreateTemplateQuestionaryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        },
+        "/template/questionaries/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get TemplateQuestionaries",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TemplateQuestionaries"
+                ],
+                "summary": "Get TemplateQuestionaries",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.GetTemplateQuestionariesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        },
+        "/template/questionaries{id}": {
+            "put": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Update TemplateQuestionaries",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TemplateQuestionaries"
+                ],
+                "summary": "Update TemplateQuestionaries",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.UpdateTemplateQuestionariesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Delete TemplateQuestionaries",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TemplateQuestionaries"
+                ],
+                "summary": "Delete TemplateQuestionaries",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.DeleteTemplateQuestionariesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/endpoints.SwaggerSimpleError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "endpoints.CommunicationTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "header_logo_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_send_report": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_entity_id": {
+                    "type": "integer"
+                },
+                "reminder_days_id": {
+                    "type": "integer"
+                },
+                "time_send_report": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.CommunicationTemplateWithEntityResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "entity": {
+                    "$ref": "#/definitions/endpoints.EntityResponse"
+                },
+                "header_logo_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_send_report": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_entity_id": {
+                    "type": "integer"
+                },
+                "reminder_days_id": {
+                    "type": "integer"
+                },
+                "time_send_report": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.CreateCommunicationTemplateRequest": {
+            "type": "object",
+            "required": [
+                "created_by",
+                "description",
+                "header_logo_id",
+                "is_send_report",
+                "name",
+                "owner_entity_id",
+                "reminder_days_id",
+                "time_send_report",
+                "updated_by"
+            ],
+            "properties": {
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "header_logo_id": {
+                    "type": "integer"
+                },
+                "is_send_report": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_entity_id": {
+                    "type": "integer"
+                },
+                "reminder_days_id": {
+                    "type": "integer"
+                },
+                "time_send_report": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.CreateTemplateQuestionaryResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "estimation": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "istemplateER": {
+                    "type": "boolean"
+                },
+                "logo_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_entity_id": {
+                    "type": "integer"
+                },
+                "recomended_frequency_id": {
+                    "type": "integer"
+                },
+                "survey": {
+                    "type": "string"
+                },
+                "typequestionary_id": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.DeleteTemplateQuestionariesResponse": {
+            "type": "object"
+        },
+        "endpoints.EmptyResponseSample": {
+            "type": "object"
+        },
+        "endpoints.Entity": {
+            "type": "object",
+            "properties": {
+                "bold_bi_site_name": {
+                    "type": "string"
+                },
+                "company_status_id": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "customer_status_id": {
+                    "type": "integer"
+                },
+                "details": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "id_orgstructure": {
+                    "type": "integer"
+                },
+                "import_lock": {
+                    "type": "boolean"
+                },
+                "logo_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "organization_size_categories_id": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                },
+                "workspace_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.EntityResponse": {
+            "type": "object",
+            "properties": {
+                "bold_bi_site_name": {
+                    "type": "string"
+                },
+                "company_status_id": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "customer_status_id": {
+                    "type": "integer"
+                },
+                "details": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "import_lock": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "organization_size_categories_id": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                },
+                "workspace_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.File": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpoints.GetTemplateQuestionariesResponse": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "entity": {
+                    "$ref": "#/definitions/endpoints.Entity"
+                },
+                "estimation": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "istemplateER": {
+                    "type": "boolean"
+                },
+                "logo": {
+                    "$ref": "#/definitions/endpoints.File"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "survey": {
+                    "type": "string"
+                },
+                "templ_recomended_frequancy": {
+                    "$ref": "#/definitions/endpoints.TemplRecomendedFrequancy"
+                },
+                "templ_typequestionary": {
+                    "$ref": "#/definitions/endpoints.TemplTypequestionary"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.SwaggerError": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/errors.Details"
+                    }
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpoints.SwaggerSimpleError": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpoints.TemplRecomendedFrequancy": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "iconColor": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "idCustomSvgIcon": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "queueNumber": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.TemplTypequestionary": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "iconColor": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "idCustomSvgIcon": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "queueNumber": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.UpdateCommunicationTemplateByIDRequest": {
+            "type": "object",
+            "required": [
+                "description",
+                "header_logo_id",
+                "id",
+                "is_send_report",
+                "name",
+                "owner_entity_id",
+                "reminder_days_id",
+                "time_send_report",
+                "updated_by"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "header_logo_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_send_report": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_entity_id": {
+                    "type": "integer"
+                },
+                "reminder_days_id": {
+                    "type": "integer"
+                },
+                "time_send_report": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "integer"
+                }
+            }
+        },
+        "endpoints.UpdateTemplateQuestionariesResponse": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "estimation": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isTemplateER": {
+                    "type": "boolean"
+                },
+                "logoID": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ownerEntityID": {
+                    "type": "integer"
+                },
+                "recomendedFrequencyID": {
+                    "type": "integer"
+                },
+                "survey": {
+                    "type": "string"
+                },
+                "typeQuestionaryID": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "integer"
+                }
+            }
+        },
+        "errors.Details": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "description": "Type \"Bearer\" followed by a space and JWT token.",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

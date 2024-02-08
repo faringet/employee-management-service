@@ -1,0 +1,63 @@
+package templateservice
+
+import (
+	"context"
+
+	"github.com/engagerocketco/go-common/consts"
+	"github.com/engagerocketco/go-common/ns"
+)
+
+type ValidationRequest struct {
+	Email       string
+	RegionID    int
+	WorkspaceID int
+	EntityID    int
+}
+
+func (s *service) hasPermissionByEntity(ctx context.Context, req ns.ValidationPermissionRequestV1) error {
+	// has, err := s.natsService.Validate(ctx, req)
+
+	// if err != nil {
+	// 	s.logger.Error(
+	// 		"failed to validate entity permission",
+	// 		zap.Error(err),
+	// 		zap.String("email", req.Email),
+	// 		zap.String("division_name", req.DivisionName),
+	// 		zap.Int("division_id", req.DivisionID),
+	// 		zap.Int("region_id", req.RegionID),
+	// 		zap.Int("division_id", req.DivisionID),
+	// 	)
+	// 	return ie.Error{
+	// 		Code:    http.StatusInternalServerError,
+	// 		Message: "failed to validate permission",
+	// 	}
+	// }
+
+	// if !has {
+	// 	return ie.PermissionForbidden()
+	// }
+
+	return nil
+}
+
+func (s *service) HasPermissionByEntity(ctx context.Context, req ValidationRequest, permCode consts.PermissionCode) error {
+	r := ns.ValidationPermissionRequestV1{
+		Email:        req.Email,
+		DivisionName: string(consts.Entity),
+		DivisionID:   req.EntityID,
+		RegionID:     req.RegionID,
+		Permission:   string(permCode),
+	}
+	return s.hasPermissionByEntity(ctx, r)
+}
+
+func (s *service) HasSuperAdminPermission(ctx context.Context, req ValidationRequest) error {
+	r := ns.ValidationPermissionRequestV1{
+		Email:        req.Email,
+		DivisionName: string(consts.Workspace),
+		DivisionID:   -1,
+		RegionID:     req.RegionID,
+		Permission:   "super_admin",
+	}
+	return s.hasPermissionByEntity(ctx, r)
+}

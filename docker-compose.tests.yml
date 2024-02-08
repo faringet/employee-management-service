@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  tests:
+    hostname: "tests"
+    build:
+      context: .
+      dockerfile: ./Dockerfile-tests
+    networks:
+      - template-api-svc-network
+    secrets:
+      - user_ssh_key
+    depends_on:
+      - template-api-svc-nats
+      - template-api-svc-postgres
+    environment:
+      - "POSTGRES_HOST=postgres"
+      - "POSTGRES_PORT=5432"
+      - "POSTGRES_USER=template-api"
+      - "POSTGRES_PASSWORD=template-api"
+      - "POSTGRES_DB=template-api"
+      - "NATS_HOST=nats"
+      - "NATS_PORT=4222"
+      - "GOOSE_DRIVER=postgres"
+      - "GOOSE_DBSTRING=host=postgres user=template-api password=template-api dbname=template-api sslmode=disable"
+      - "OAUTH_DOMAIN=domain"
+      - "OAUTH_AUDIENCES=qwerty"
+
+
+secrets:
+  user_ssh_key:
+    file: ${USER_SSH_KEY}

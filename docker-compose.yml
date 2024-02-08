@@ -1,0 +1,27 @@
+version: '3.8'
+
+networks:
+  template-api-svc-network:
+    name: template-api-svc-network
+
+services:
+  template-api-svc-postgres:
+    image: postgres:15-alpine
+    hostname: postgres
+    restart: on-failure
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: template-api
+      POSTGRES_PASSWORD: template-api
+      POSTGRES_DB: template-api
+    networks:
+      - template-api-svc-network
+  template-api-svc-nats:
+    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --http_port 8222"
+    image: nats:2.10
+    ports:
+      - 4222:4222
+    hostname: nats
+    networks:
+      - template-api-svc-network

@@ -1,0 +1,15 @@
+FROM golang:1.21
+
+ENV GO111MODULE=on
+ENV GOPRIVATE=github.com/engagerocketco/*
+ENV GIT_SSH_COMMAND="ssh -i /run/secrets/user_ssh_key -F none -o IdentitiesOnly=yes -o StrictHostKeyChecking=no"
+
+WORKDIR /app
+
+RUN git config --global url."ssh://git@github.com".insteadOf "https://github.com" && \
+    go install github.com/pressly/goose/v3/cmd/goose@v3.17.0
+
+
+COPY . .
+
+CMD ["/bin/bash", "-c", "make migrate;make test-report"]

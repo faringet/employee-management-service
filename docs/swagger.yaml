@@ -1,0 +1,850 @@
+basePath: /api/v1/template
+definitions:
+  endpoints.CommunicationTemplateResponse:
+    properties:
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      description:
+        type: string
+      header_logo_id:
+        type: integer
+      id:
+        type: integer
+      is_send_report:
+        type: boolean
+      name:
+        type: string
+      owner_entity_id:
+        type: integer
+      reminder_days_id:
+        type: integer
+      time_send_report:
+        type: string
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+    type: object
+  endpoints.CommunicationTemplateWithEntityResponse:
+    properties:
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      description:
+        type: string
+      entity:
+        $ref: '#/definitions/endpoints.EntityResponse'
+      header_logo_id:
+        type: integer
+      id:
+        type: integer
+      is_send_report:
+        type: boolean
+      name:
+        type: string
+      owner_entity_id:
+        type: integer
+      reminder_days_id:
+        type: integer
+      time_send_report:
+        type: string
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+    type: object
+  endpoints.CreateCommunicationTemplateRequest:
+    properties:
+      created_by:
+        type: integer
+      description:
+        type: string
+      header_logo_id:
+        type: integer
+      is_send_report:
+        type: boolean
+      name:
+        type: string
+      owner_entity_id:
+        type: integer
+      reminder_days_id:
+        type: integer
+      time_send_report:
+        type: string
+      updated_by:
+        type: integer
+    required:
+    - created_by
+    - description
+    - header_logo_id
+    - is_send_report
+    - name
+    - owner_entity_id
+    - reminder_days_id
+    - time_send_report
+    - updated_by
+    type: object
+  endpoints.CreateTemplateQuestionaryResponse:
+    properties:
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      description:
+        type: string
+      estimation:
+        type: string
+      id:
+        type: integer
+      istemplateER:
+        type: boolean
+      logo_id:
+        type: integer
+      name:
+        type: string
+      owner_entity_id:
+        type: integer
+      recomended_frequency_id:
+        type: integer
+      survey:
+        type: string
+      typequestionary_id:
+        type: integer
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+    type: object
+  endpoints.DeleteTemplateQuestionariesResponse:
+    type: object
+  endpoints.EmptyResponseSample:
+    type: object
+  endpoints.Entity:
+    properties:
+      bold_bi_site_name:
+        type: string
+      company_status_id:
+        type: integer
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      customer_status_id:
+        type: integer
+      details:
+        type: string
+      id:
+        type: integer
+      id_orgstructure:
+        type: integer
+      import_lock:
+        type: boolean
+      logo_id:
+        type: integer
+      name:
+        type: string
+      organization_size_categories_id:
+        type: integer
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+      workspace_id:
+        type: integer
+    type: object
+  endpoints.EntityResponse:
+    properties:
+      bold_bi_site_name:
+        type: string
+      company_status_id:
+        type: integer
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      customer_status_id:
+        type: integer
+      details:
+        type: string
+      id:
+        type: integer
+      import_lock:
+        type: boolean
+      name:
+        type: string
+      organization_size_categories_id:
+        type: integer
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+      workspace_id:
+        type: integer
+    type: object
+  endpoints.File:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      path:
+        type: string
+    type: object
+  endpoints.GetTemplateQuestionariesResponse:
+    properties:
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      description:
+        type: string
+      entity:
+        $ref: '#/definitions/endpoints.Entity'
+      estimation:
+        type: string
+      id:
+        type: integer
+      istemplateER:
+        type: boolean
+      logo:
+        $ref: '#/definitions/endpoints.File'
+      name:
+        type: string
+      survey:
+        type: string
+      templ_recomended_frequancy:
+        $ref: '#/definitions/endpoints.TemplRecomendedFrequancy'
+      templ_typequestionary:
+        $ref: '#/definitions/endpoints.TemplTypequestionary'
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+    type: object
+  endpoints.SwaggerError:
+    properties:
+      details:
+        items:
+          $ref: '#/definitions/errors.Details'
+        type: array
+      error:
+        type: string
+    type: object
+  endpoints.SwaggerSimpleError:
+    properties:
+      error:
+        type: string
+    type: object
+  endpoints.TemplRecomendedFrequancy:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      description:
+        type: string
+      iconColor:
+        type: string
+      id:
+        type: integer
+      idCustomSvgIcon:
+        type: integer
+      name:
+        type: string
+      queueNumber:
+        type: integer
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+    type: object
+  endpoints.TemplTypequestionary:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      description:
+        type: string
+      iconColor:
+        type: string
+      id:
+        type: integer
+      idCustomSvgIcon:
+        type: integer
+      name:
+        type: string
+      queueNumber:
+        type: integer
+      updated_at:
+        type: string
+      updated_by:
+        type: integer
+    type: object
+  endpoints.UpdateCommunicationTemplateByIDRequest:
+    properties:
+      description:
+        type: string
+      header_logo_id:
+        type: integer
+      id:
+        type: integer
+      is_send_report:
+        type: boolean
+      name:
+        type: string
+      owner_entity_id:
+        type: integer
+      reminder_days_id:
+        type: integer
+      time_send_report:
+        type: string
+      updated_by:
+        type: integer
+    required:
+    - description
+    - header_logo_id
+    - id
+    - is_send_report
+    - name
+    - owner_entity_id
+    - reminder_days_id
+    - time_send_report
+    - updated_by
+    type: object
+  endpoints.UpdateTemplateQuestionariesResponse:
+    properties:
+      createdAt:
+        type: string
+      createdBy:
+        type: integer
+      description:
+        type: string
+      estimation:
+        type: string
+      id:
+        type: integer
+      isTemplateER:
+        type: boolean
+      logoID:
+        type: integer
+      name:
+        type: string
+      ownerEntityID:
+        type: integer
+      recomendedFrequencyID:
+        type: integer
+      survey:
+        type: string
+      typeQuestionaryID:
+        type: integer
+      updatedAt:
+        type: string
+      updatedBy:
+        type: integer
+    type: object
+  errors.Details:
+    properties:
+      field:
+        type: string
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Template API service
+  title: Template API
+paths:
+  /communication:
+    post:
+      consumes:
+      - application/json
+      description: Create communication template record
+      parameters:
+      - description: Create request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/endpoints.CreateCommunicationTemplateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/endpoints.CommunicationTemplateResponse'
+        "400":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "401":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "403":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Create communication template
+      tags:
+      - communication
+  /communication/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete communication template record by id
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: json with empty response
+          schema:
+            $ref: '#/definitions/endpoints.EmptyResponseSample'
+        "400":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "401":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "403":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Delete communication template
+      tags:
+      - communication
+    get:
+      consumes:
+      - application/json
+      description: Get communication template record by id
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: json with empty response
+          schema:
+            $ref: '#/definitions/endpoints.CommunicationTemplateResponse'
+        "400":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "401":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "403":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Get communication template
+      tags:
+      - communication
+    put:
+      consumes:
+      - application/json
+      description: Update communication template record by id
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/endpoints.UpdateCommunicationTemplateByIDRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: json with empty response
+          schema:
+            $ref: '#/definitions/endpoints.CommunicationTemplateResponse'
+        "400":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "401":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "403":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Update communication template
+      tags:
+      - communication
+  /communication/{id}/entity:
+    get:
+      consumes:
+      - application/json
+      description: Get communication template with entity record by id
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: json with empty response
+          schema:
+            $ref: '#/definitions/endpoints.CommunicationTemplateWithEntityResponse'
+        "400":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "401":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "403":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Get communication template
+      tags:
+      - communication
+  /communication/entity/{id}:
+    get:
+      description: Get communication template records by entity id
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: json with empty response
+          schema:
+            items:
+              $ref: '#/definitions/endpoints.CommunicationTemplateResponse'
+            type: array
+        "400":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "401":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "403":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: json with error msg
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Get communication templates
+      tags:
+      - communication
+  /ping:
+    get:
+      description: Ping Request
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: pong
+          schema:
+            type: string
+      summary: Ping Request
+      tags:
+      - ping
+  /template/questionaries:
+    get:
+      consumes:
+      - application/json
+      description: Get TemplateQuestionaries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/endpoints.GetTemplateQuestionariesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Get TemplateQuestionaries
+      tags:
+      - TemplateQuestionaries
+    post:
+      consumes:
+      - application/json
+      description: Create TemplateQuestionaries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/endpoints.CreateTemplateQuestionaryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Create TemplateQuestionaries
+      tags:
+      - TemplateQuestionaries
+  /template/questionaries/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get TemplateQuestionaries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/endpoints.GetTemplateQuestionariesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Get TemplateQuestionaries
+      tags:
+      - TemplateQuestionaries
+  /template/questionaries{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete TemplateQuestionaries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/endpoints.DeleteTemplateQuestionariesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Delete TemplateQuestionaries
+      tags:
+      - TemplateQuestionaries
+    put:
+      consumes:
+      - application/json
+      description: Update TemplateQuestionaries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/endpoints.UpdateTemplateQuestionariesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/endpoints.SwaggerSimpleError'
+      security:
+      - Bearer: []
+      summary: Update TemplateQuestionaries
+      tags:
+      - TemplateQuestionaries
+securityDefinitions:
+  Bearer:
+    description: Type "Bearer" followed by a space and JWT token.
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

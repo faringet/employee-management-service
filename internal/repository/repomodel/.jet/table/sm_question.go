@@ -29,6 +29,7 @@ type smQuestionTable struct {
 	TypeQuestionID      postgres.ColumnInteger
 	DimensionID         postgres.ColumnInteger
 	SurveyID            postgres.ColumnInteger
+	QuestionJson        postgres.ColumnString
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -81,8 +82,9 @@ func newSmQuestionTableImpl(schemaName, tableName, alias string) smQuestionTable
 		TypeQuestionIDColumn      = postgres.IntegerColumn("type_question_id")
 		DimensionIDColumn         = postgres.IntegerColumn("dimension_id")
 		SurveyIDColumn            = postgres.IntegerColumn("survey_id")
-		allColumns                = postgres.ColumnList{IDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, IsQuestionConditionColumn, IsCalculateScoreColumn, TypeQuestionIDColumn, DimensionIDColumn, SurveyIDColumn}
-		mutableColumns            = postgres.ColumnList{UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, IsQuestionConditionColumn, IsCalculateScoreColumn, TypeQuestionIDColumn, DimensionIDColumn, SurveyIDColumn}
+		QuestionJsonColumn        = postgres.StringColumn("questionJson")
+		allColumns                = postgres.ColumnList{IDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, IsQuestionConditionColumn, IsCalculateScoreColumn, TypeQuestionIDColumn, DimensionIDColumn, SurveyIDColumn, QuestionJsonColumn}
+		mutableColumns            = postgres.ColumnList{UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, IsQuestionConditionColumn, IsCalculateScoreColumn, TypeQuestionIDColumn, DimensionIDColumn, SurveyIDColumn, QuestionJsonColumn}
 	)
 
 	return smQuestionTable{
@@ -101,6 +103,7 @@ func newSmQuestionTableImpl(schemaName, tableName, alias string) smQuestionTable
 		TypeQuestionID:      TypeQuestionIDColumn,
 		DimensionID:         DimensionIDColumn,
 		SurveyID:            SurveyIDColumn,
+		QuestionJson:        QuestionJsonColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

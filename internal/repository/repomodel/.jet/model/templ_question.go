@@ -24,4 +24,5 @@ type TemplQuestion struct {
 	DimensionID         *int32
 	IsQuestionCondition *bool
 	IsCalculateScore    *bool
+	QuestionJson        *string
 }

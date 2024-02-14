@@ -21,7 +21,7 @@ type TemplTemplateQuestionary struct {
 	Description           *string
 	Estimation            *string
 	RecomendedFrequencyID *int32
-	IsTemplateER          *bool
+	IstemplateER          *bool
 	TypeQuestionaryID     *int32
 	Survey                *string
 	OwnerEntityID         *int32

@@ -98,6 +98,6 @@ func UseSchema(schema string) {
 	TemplTemplateQuestionary = TemplTemplateQuestionary.FromSchema(schema)
 	TemplTypeAccessSurvey = TemplTypeAccessSurvey.FromSchema(schema)
 	TemplTypequestionary = TemplTypequestionary.FromSchema(schema)
-	// Workspace = Workspace.FromSchema(schema)
+	Workspace = Workspace.FromSchema(schema)
 	WorkspaceSettings = WorkspaceSettings.FromSchema(schema)
 }

@@ -24,4 +24,6 @@ type DictionaryLanguage struct {
 	IconColor       *string
 	IdCustomSvgIcon *int32
 	IsDefault       *bool
+	Iso             *string
+	Active          *bool
 }

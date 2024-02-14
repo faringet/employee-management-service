@@ -65,7 +65,7 @@ func NewBaseApp(ctx context.Context, logger *zap.Logger, cfg *config.Config) (*B
 		return nil, fmt.Errorf("postgres: unable to connect to the database: %w", err)
 	}
 
-	postgresRepo, err := postgres.New(dbConn, db, logger)
+	postgresRepo, err := postgres.New(db, logger)
 	if err != nil {
 		return nil, fmt.Errorf("repository: unable to initialize a postgres repository: %w", err)
 	}

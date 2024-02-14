@@ -11,18 +11,17 @@ import (
 	"time"
 )
 
-type TemplTemplateComms struct {
+type Workspace struct {
 	ID             int32 `sql:"primary_key"`
+	Name           *string
+	ProjM          *bool
+	Industry       *string
+	SignInMethod   *int32
+	Demo           *bool
 	UpdatedAt      *time.Time
-	CreatedAt      *time.Time
 	UpdatedBy      *int32
 	CreatedBy      *int32
-	Name           *string
-	Description    *string
-	IsSendReport   *bool
-	ReminderDaysID *int32
-	TimeSendReport *time.Time
-	HeaderLogoID   *int32
-	OwnerEntityID  *int32
-	HeaderLogo     *string
+	CreatedAt      *time.Time
+	CompanyLogoID  *int32
+	CompanyLogoURL *string
 }

@@ -42,3 +42,11 @@ var ErrCustom3 error = Error{
 	Code:    http.StatusInternalServerError,
 	Message: "internal server error3",
 }
+
+func RequestValidationFailed(details []Details) Error {
+	return Error{
+		Details: details,
+		Code:    http.StatusUnprocessableEntity,
+		Message: "Request validation failed",
+	}
+}

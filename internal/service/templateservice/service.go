@@ -7,11 +7,6 @@ import (
 )
 
 type Service interface {
-	TemplTemplateQuestionary
-	CommunicationTemplateService
-	SurveyTags
-	TemplRecomendedFrequancy
-	TemplQuestionaryTags
 }
 
 type service struct {

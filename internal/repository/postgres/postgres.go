@@ -5,18 +5,17 @@ import (
 
 	"github.com/doug-martin/goqu/v9"
 	"github.com/engagerocketco/templates-api-svc/internal/repository"
+	"github.com/go-jet/jet/v2/qrm"
 	"go.uber.org/zap"
 )
 
 type PostgresRepo struct {
-	DB     goqu.SQLDatabase
 	logger *zap.Logger
-	JetDB  *sql.DB
+	JetDB  qrm.DB
 }
 
-func New(db goqu.SQLDatabase, JetDB *sql.DB, logger *zap.Logger) (repository.Repository, error) {
+func New(JetDB *sql.DB, logger *zap.Logger) (repository.Repository, error) {
 	return &PostgresRepo{
-		DB:     db,
 		JetDB:  JetDB,
 		logger: logger.Named("postgres"),
 	}, nil

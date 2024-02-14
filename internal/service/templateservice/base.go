@@ -1,11 +1,11 @@
 package templateservice
 
 type BaseIdResponse struct {
-	ID int
+	ID int `json:"id"`
 }
 
 type BaseIdRequest struct {
-	ID int
+	ID int `json:"id"`
 }
 
 type PaginationRequest struct {

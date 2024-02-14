@@ -29,6 +29,7 @@ type templTemplateCommsTable struct {
 	TimeSendReport postgres.ColumnTimestamp
 	HeaderLogoID   postgres.ColumnInteger
 	OwnerEntityID  postgres.ColumnInteger
+	HeaderLogo     postgres.ColumnString
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -81,8 +82,9 @@ func newTemplTemplateCommsTableImpl(schemaName, tableName, alias string) templTe
 		TimeSendReportColumn = postgres.TimestampColumn("time_send_report")
 		HeaderLogoIDColumn   = postgres.IntegerColumn("header_logo_id")
 		OwnerEntityIDColumn  = postgres.IntegerColumn("owner_entity_id")
-		allColumns           = postgres.ColumnList{IDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, DescriptionColumn, IsSendReportColumn, ReminderDaysIDColumn, TimeSendReportColumn, HeaderLogoIDColumn, OwnerEntityIDColumn}
-		mutableColumns       = postgres.ColumnList{UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, DescriptionColumn, IsSendReportColumn, ReminderDaysIDColumn, TimeSendReportColumn, HeaderLogoIDColumn, OwnerEntityIDColumn}
+		HeaderLogoColumn     = postgres.StringColumn("header_logo")
+		allColumns           = postgres.ColumnList{IDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, DescriptionColumn, IsSendReportColumn, ReminderDaysIDColumn, TimeSendReportColumn, HeaderLogoIDColumn, OwnerEntityIDColumn, HeaderLogoColumn}
+		mutableColumns       = postgres.ColumnList{UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, DescriptionColumn, IsSendReportColumn, ReminderDaysIDColumn, TimeSendReportColumn, HeaderLogoIDColumn, OwnerEntityIDColumn, HeaderLogoColumn}
 	)
 
 	return templTemplateCommsTable{
@@ -101,6 +103,7 @@ func newTemplTemplateCommsTableImpl(schemaName, tableName, alias string) templTe
 		TimeSendReport: TimeSendReportColumn,
 		HeaderLogoID:   HeaderLogoIDColumn,
 		OwnerEntityID:  OwnerEntityIDColumn,
+		HeaderLogo:     HeaderLogoColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

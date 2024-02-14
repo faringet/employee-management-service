@@ -22,6 +22,7 @@ type SmQuestion struct {
 	IsQuestionCondition *bool
 	IsCalculateScore    *bool
 	TypeQuestionID      int32
-	DimensionID         int32
+	DimensionID         *int32
 	SurveyID            int32
+	QuestionJson        *string
 }

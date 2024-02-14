@@ -11,7 +11,6 @@ import (
 	"github.com/engagerocketco/templates-api-svc/internal/repository/postgres"
 	_ "github.com/lib/pq"
 
-	"github.com/jmoiron/sqlx"
 	"go.uber.org/zap"
 )
 
@@ -21,17 +20,13 @@ func NewPgRepo(
 	cfg *config.Config,
 ) (repository.Repository, *testsUtils.Conn) {
 	conn := testsUtils.NewTestPgConn(ctx, t, cfg)
-	db, err := sqlx.Connect("postgres", cfg.PostgresConfig.ConnectionString())
-	if err != nil {
-		t.Fatalf("create pg conn: %v", err)
-	}
 
 	jetDB, err := sql.Open("postgres", cfg.PostgresConfig.ConnectionString())
 	if err != nil {
 		t.Fatalf("create pg conn: %v", err)
 	}
 
-	repo, err := postgres.New(db, jetDB, &zap.Logger{})
+	repo, err := postgres.New(jetDB, &zap.Logger{})
 	if err != nil {
 		t.Fatalf("new postgres: %v", err)
 	}

@@ -14,15 +14,19 @@ require (
 	github.com/engagerocketco/go-common/tests v0.0.8
 	github.com/go-kit/kit v0.13.0
 	github.com/go-playground/validator/v10 v10.17.0
-	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/gorilla/mux v1.8.1
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/lib/pq v1.10.9
 	github.com/nats-io/nats.go v1.32.0
-	github.com/stretchr/testify v1.8.4
 	github.com/swaggo/http-swagger v1.3.4
 	github.com/swaggo/swag v1.16.2
 	go.uber.org/zap v1.26.0
+)
+
+require (
+	github.com/engagerocketco/go-common/consts v0.0.3
+	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
 )
 
 require (
@@ -34,7 +38,6 @@ require (
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
 	github.com/engagerocketco/go-common/sendgrid v0.0.2 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
-	github.com/go-jet/jet v2.3.0+incompatible
 	github.com/go-jet/jet/v2 v2.10.1
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect

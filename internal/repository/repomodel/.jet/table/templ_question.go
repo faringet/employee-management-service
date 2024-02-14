@@ -29,6 +29,7 @@ type templQuestionTable struct {
 	DimensionID         postgres.ColumnInteger
 	IsQuestionCondition postgres.ColumnBool
 	IsCalculateScore    postgres.ColumnBool
+	QuestionJson        postgres.ColumnString
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -81,8 +82,9 @@ func newTemplQuestionTableImpl(schemaName, tableName, alias string) templQuestio
 		DimensionIDColumn         = postgres.IntegerColumn("dimension_id")
 		IsQuestionConditionColumn = postgres.BoolColumn("isQuestionCondition")
 		IsCalculateScoreColumn    = postgres.BoolColumn("isCalculateScore")
-		allColumns                = postgres.ColumnList{IDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, TemplateIDColumn, TypeQuestionIDColumn, DimensionIDColumn, IsQuestionConditionColumn, IsCalculateScoreColumn}
-		mutableColumns            = postgres.ColumnList{UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, TemplateIDColumn, TypeQuestionIDColumn, DimensionIDColumn, IsQuestionConditionColumn, IsCalculateScoreColumn}
+		QuestionJsonColumn        = postgres.StringColumn("questionJson")
+		allColumns                = postgres.ColumnList{IDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, TemplateIDColumn, TypeQuestionIDColumn, DimensionIDColumn, IsQuestionConditionColumn, IsCalculateScoreColumn, QuestionJsonColumn}
+		mutableColumns            = postgres.ColumnList{UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, NameColumn, TitleColumn, TemplateIDColumn, TypeQuestionIDColumn, DimensionIDColumn, IsQuestionConditionColumn, IsCalculateScoreColumn, QuestionJsonColumn}
 	)
 
 	return templQuestionTable{
@@ -101,6 +103,7 @@ func newTemplQuestionTableImpl(schemaName, tableName, alias string) templQuestio
 		DimensionID:         DimensionIDColumn,
 		IsQuestionCondition: IsQuestionConditionColumn,
 		IsCalculateScore:    IsCalculateScoreColumn,
+		QuestionJson:        QuestionJsonColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

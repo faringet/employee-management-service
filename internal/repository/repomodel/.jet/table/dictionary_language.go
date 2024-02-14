@@ -29,6 +29,8 @@ type dictionaryLanguageTable struct {
 	IconColor       postgres.ColumnString
 	IdCustomSvgIcon postgres.ColumnInteger
 	IsDefault       postgres.ColumnBool
+	Iso             postgres.ColumnString
+	Active          postgres.ColumnBool
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -81,8 +83,10 @@ func newDictionaryLanguageTableImpl(schemaName, tableName, alias string) diction
 		IconColorColumn       = postgres.StringColumn("iconColor")
 		IdCustomSvgIconColumn = postgres.IntegerColumn("idCustomSvgIcon")
 		IsDefaultColumn       = postgres.BoolColumn("is_default")
-		allColumns            = postgres.ColumnList{IDColumn, NameColumn, CodeColumn, DescriptionColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, QueueNumberColumn, IconColorColumn, IdCustomSvgIconColumn, IsDefaultColumn}
-		mutableColumns        = postgres.ColumnList{NameColumn, CodeColumn, DescriptionColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, QueueNumberColumn, IconColorColumn, IdCustomSvgIconColumn, IsDefaultColumn}
+		IsoColumn             = postgres.StringColumn("iso")
+		ActiveColumn          = postgres.BoolColumn("active")
+		allColumns            = postgres.ColumnList{IDColumn, NameColumn, CodeColumn, DescriptionColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, QueueNumberColumn, IconColorColumn, IdCustomSvgIconColumn, IsDefaultColumn, IsoColumn, ActiveColumn}
+		mutableColumns        = postgres.ColumnList{NameColumn, CodeColumn, DescriptionColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, QueueNumberColumn, IconColorColumn, IdCustomSvgIconColumn, IsDefaultColumn, IsoColumn, ActiveColumn}
 	)
 
 	return dictionaryLanguageTable{
@@ -101,6 +105,8 @@ func newDictionaryLanguageTableImpl(schemaName, tableName, alias string) diction
 		IconColor:       IconColorColumn,
 		IdCustomSvgIcon: IdCustomSvgIconColumn,
 		IsDefault:       IsDefaultColumn,
+		Iso:             IsoColumn,
+		Active:          ActiveColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

@@ -1,6 +1,7 @@
 package transport
 
 import (
+	"context"
 	"net/http"
 	"strconv"
 
@@ -8,6 +9,10 @@ import (
 	ie "github.com/engagerocketco/templates-api-svc/pkg/errors"
 	"go.uber.org/zap"
 )
+
+func getEmail(ctx context.Context) (string, error) {
+	return "mocked@email.com", nil
+}
 
 func parsePagination(r *http.Request, req *endpoints.PaginationRequest) error {
 	if sortBy := r.URL.Query().Get("sort_by"); sortBy != "" {

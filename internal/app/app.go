@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/engagerocketco/go-common/config"
-	"github.com/engagerocketco/go-common/logger"
+	"github.com/engagerocketco/templates-api-svc/internal/config"
+	"github.com/engagerocketco/templates-api-svc/internal/logger"
 )
 
 type App struct {

@@ -17,31 +17,19 @@ type smSurveyTable struct {
 	postgres.Table
 
 	// Columns
-	ID                    postgres.ColumnInteger
-	Name                  postgres.ColumnString
-	UpdatedAt             postgres.ColumnTimestamp
-	CreatedAt             postgres.ColumnTimestamp
-	UpdatedBy             postgres.ColumnInteger
-	CreatedBy             postgres.ColumnInteger
-	FinishMessage         postgres.ColumnString
-	StatusID              postgres.ColumnInteger
-	ProjectID             postgres.ColumnInteger
-	MilestoneDay          postgres.ColumnInteger
-	StartDateAttributeID  postgres.ColumnInteger
-	CommsHeaderLogo       postgres.ColumnString
-	CommsIsSendReport     postgres.ColumnBool
-	CommsTimeSendReport   postgres.ColumnTimestamp
-	SurveyDateStart       postgres.ColumnTimestamp
-	SurveyDateEnd         postgres.ColumnTimestamp
-	CommsReminderDaysID   postgres.ColumnInteger
-	Number                postgres.ColumnString
-	QuestionaryEstimation postgres.ColumnString
-	QuestionarySurvey     postgres.ColumnString
-	QuestionaryTypeID     postgres.ColumnInteger
-	TimestartMilestone    postgres.ColumnTimestamp
-	LaunchedLastDate      postgres.ColumnTimestamp
-	DatatimeNextstart     postgres.ColumnTimestamp
-	LeaveDateEmpty        postgres.ColumnBool
+	ID                       postgres.ColumnInteger
+	Name                     postgres.ColumnString
+	UpdatedAt                postgres.ColumnTimestamp
+	CreatedAt                postgres.ColumnTimestamp
+	UpdatedBy                postgres.ColumnInteger
+	CreatedBy                postgres.ColumnInteger
+	StatusID                 postgres.ColumnInteger
+	ProjectID                postgres.ColumnInteger
+	MilestoneDay             postgres.ColumnInteger
+	DateAttributeMilestoneID postgres.ColumnInteger
+	SurveyDateStart          postgres.ColumnTimestamp
+	SurveyDateEnd            postgres.ColumnTimestamp
+	TimestartMilestone       postgres.ColumnTimestamp
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -82,64 +70,40 @@ func newSmSurveyTable(schemaName, tableName, alias string) *SmSurveyTable {
 
 func newSmSurveyTableImpl(schemaName, tableName, alias string) smSurveyTable {
 	var (
-		IDColumn                    = postgres.IntegerColumn("id")
-		NameColumn                  = postgres.StringColumn("name")
-		UpdatedAtColumn             = postgres.TimestampColumn("updated_at")
-		CreatedAtColumn             = postgres.TimestampColumn("created_at")
-		UpdatedByColumn             = postgres.IntegerColumn("updated_by")
-		CreatedByColumn             = postgres.IntegerColumn("created_by")
-		FinishMessageColumn         = postgres.StringColumn("finish_message")
-		StatusIDColumn              = postgres.IntegerColumn("status_id")
-		ProjectIDColumn             = postgres.IntegerColumn("project_id")
-		MilestoneDayColumn          = postgres.IntegerColumn("milestone_day")
-		StartDateAttributeIDColumn  = postgres.IntegerColumn("start_date_attribute_id")
-		CommsHeaderLogoColumn       = postgres.StringColumn("comms_header_logo")
-		CommsIsSendReportColumn     = postgres.BoolColumn("comms_is_send_report")
-		CommsTimeSendReportColumn   = postgres.TimestampColumn("comms_time_send_report")
-		SurveyDateStartColumn       = postgres.TimestampColumn("survey_date_start")
-		SurveyDateEndColumn         = postgres.TimestampColumn("survey_date_end")
-		CommsReminderDaysIDColumn   = postgres.IntegerColumn("comms_reminder_days_id")
-		NumberColumn                = postgres.StringColumn("number")
-		QuestionaryEstimationColumn = postgres.StringColumn("questionary_estimation")
-		QuestionarySurveyColumn     = postgres.StringColumn("questionary_survey")
-		QuestionaryTypeIDColumn     = postgres.IntegerColumn("questionary_type_id")
-		TimestartMilestoneColumn    = postgres.TimestampColumn("timestart_milestone")
-		LaunchedLastDateColumn      = postgres.TimestampColumn("launched_last_date")
-		DatatimeNextstartColumn     = postgres.TimestampColumn("datatime_nextstart")
-		LeaveDateEmptyColumn        = postgres.BoolColumn("leave_date_empty")
-		allColumns                  = postgres.ColumnList{IDColumn, NameColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, FinishMessageColumn, StatusIDColumn, ProjectIDColumn, MilestoneDayColumn, StartDateAttributeIDColumn, CommsHeaderLogoColumn, CommsIsSendReportColumn, CommsTimeSendReportColumn, SurveyDateStartColumn, SurveyDateEndColumn, CommsReminderDaysIDColumn, NumberColumn, QuestionaryEstimationColumn, QuestionarySurveyColumn, QuestionaryTypeIDColumn, TimestartMilestoneColumn, LaunchedLastDateColumn, DatatimeNextstartColumn, LeaveDateEmptyColumn}
-		mutableColumns              = postgres.ColumnList{NameColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, FinishMessageColumn, StatusIDColumn, ProjectIDColumn, MilestoneDayColumn, StartDateAttributeIDColumn, CommsHeaderLogoColumn, CommsIsSendReportColumn, CommsTimeSendReportColumn, SurveyDateStartColumn, SurveyDateEndColumn, CommsReminderDaysIDColumn, NumberColumn, QuestionaryEstimationColumn, QuestionarySurveyColumn, QuestionaryTypeIDColumn, TimestartMilestoneColumn, LaunchedLastDateColumn, DatatimeNextstartColumn, LeaveDateEmptyColumn}
+		IDColumn                       = postgres.IntegerColumn("id")
+		NameColumn                     = postgres.StringColumn("name")
+		UpdatedAtColumn                = postgres.TimestampColumn("updated_at")
+		CreatedAtColumn                = postgres.TimestampColumn("created_at")
+		UpdatedByColumn                = postgres.IntegerColumn("updated_by")
+		CreatedByColumn                = postgres.IntegerColumn("created_by")
+		StatusIDColumn                 = postgres.IntegerColumn("status_id")
+		ProjectIDColumn                = postgres.IntegerColumn("project_id")
+		MilestoneDayColumn             = postgres.IntegerColumn("milestone_day")
+		DateAttributeMilestoneIDColumn = postgres.IntegerColumn("date_attribute_milestone_id")
+		SurveyDateStartColumn          = postgres.TimestampColumn("survey_date_start")
+		SurveyDateEndColumn            = postgres.TimestampColumn("survey_date_end")
+		TimestartMilestoneColumn       = postgres.TimestampColumn("timestart_milestone")
+		allColumns                     = postgres.ColumnList{IDColumn, NameColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, StatusIDColumn, ProjectIDColumn, MilestoneDayColumn, DateAttributeMilestoneIDColumn, SurveyDateStartColumn, SurveyDateEndColumn, TimestartMilestoneColumn}
+		mutableColumns                 = postgres.ColumnList{NameColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, StatusIDColumn, ProjectIDColumn, MilestoneDayColumn, DateAttributeMilestoneIDColumn, SurveyDateStartColumn, SurveyDateEndColumn, TimestartMilestoneColumn}
 	)
 
 	return smSurveyTable{
 		Table: postgres.NewTable(schemaName, tableName, alias, allColumns...),
 
 		//Columns
-		ID:                    IDColumn,
-		Name:                  NameColumn,
-		UpdatedAt:             UpdatedAtColumn,
-		CreatedAt:             CreatedAtColumn,
-		UpdatedBy:             UpdatedByColumn,
-		CreatedBy:             CreatedByColumn,
-		FinishMessage:         FinishMessageColumn,
-		StatusID:              StatusIDColumn,
-		ProjectID:             ProjectIDColumn,
-		MilestoneDay:          MilestoneDayColumn,
-		StartDateAttributeID:  StartDateAttributeIDColumn,
-		CommsHeaderLogo:       CommsHeaderLogoColumn,
-		CommsIsSendReport:     CommsIsSendReportColumn,
-		CommsTimeSendReport:   CommsTimeSendReportColumn,
-		SurveyDateStart:       SurveyDateStartColumn,
-		SurveyDateEnd:         SurveyDateEndColumn,
-		CommsReminderDaysID:   CommsReminderDaysIDColumn,
-		Number:                NumberColumn,
-		QuestionaryEstimation: QuestionaryEstimationColumn,
-		QuestionarySurvey:     QuestionarySurveyColumn,
-		QuestionaryTypeID:     QuestionaryTypeIDColumn,
-		TimestartMilestone:    TimestartMilestoneColumn,
-		LaunchedLastDate:      LaunchedLastDateColumn,
-		DatatimeNextstart:     DatatimeNextstartColumn,
-		LeaveDateEmpty:        LeaveDateEmptyColumn,
+		ID:                       IDColumn,
+		Name:                     NameColumn,
+		UpdatedAt:                UpdatedAtColumn,
+		CreatedAt:                CreatedAtColumn,
+		UpdatedBy:                UpdatedByColumn,
+		CreatedBy:                CreatedByColumn,
+		StatusID:                 StatusIDColumn,
+		ProjectID:                ProjectIDColumn,
+		MilestoneDay:             MilestoneDayColumn,
+		DateAttributeMilestoneID: DateAttributeMilestoneIDColumn,
+		SurveyDateStart:          SurveyDateStartColumn,
+		SurveyDateEnd:            SurveyDateEndColumn,
+		TimestartMilestone:       TimestartMilestoneColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

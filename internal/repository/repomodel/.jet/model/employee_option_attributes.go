@@ -11,13 +11,13 @@ import (
 	"time"
 )
 
-type SmSurveyStatus struct {
+type EmployeeOptionAttributes struct {
 	ID          int32 `sql:"primary_key"`
-	Name        *string
-	Code        *string
-	Description *string
-	UpdatedAt   *time.Time
+	Value       *string
 	CreatedAt   *time.Time
-	UpdatedBy   *int32
+	UpdatedAt   *time.Time
 	CreatedBy   *int32
+	UpdatedBy   *int32
+	AttributeID *int32
+	EmployeeID  *int32
 }

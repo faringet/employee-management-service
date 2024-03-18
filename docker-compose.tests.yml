@@ -19,8 +19,6 @@ services:
       - "POSTGRES_USER=template-api"
       - "POSTGRES_PASSWORD=template-api"
       - "POSTGRES_DB=template-api"
-      - "NATS_HOST=nats"
-      - "NATS_PORT=4222"
       - "GOOSE_DRIVER=postgres"
       - "GOOSE_DBSTRING=host=postgres user=template-api password=template-api dbname=template-api sslmode=disable"
       - "OAUTH_DOMAIN=domain"

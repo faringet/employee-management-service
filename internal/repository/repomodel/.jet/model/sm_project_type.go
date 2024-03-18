@@ -12,15 +12,12 @@ import (
 )
 
 type SmProjectType struct {
-	ID              int32 `sql:"primary_key"`
-	Name            *string
-	Code            *string
-	Description     *string
-	UpdatedAt       *time.Time
-	CreatedAt       *time.Time
-	UpdatedBy       *int32
-	CreatedBy       *int32
-	QueueNumber     *int32
-	IconColor       *string
-	IdCustomSvgIcon *int32
+	ID          int32 `sql:"primary_key"`
+	Name        *string
+	Code        *string
+	Description *string
+	UpdatedAt   *time.Time
+	CreatedAt   *time.Time
+	UpdatedBy   *int32
+	CreatedBy   *int32
 }

@@ -11,16 +11,10 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/engagerocketco/go-common/auth0"
-	"github.com/engagerocketco/go-common/ns"
-	"github.com/nats-io/nats.go"
-
-	"github.com/engagerocketco/go-common/config"
-	"github.com/engagerocketco/go-common/pg"
+	"github.com/engagerocketco/templates-api-svc/internal/config"
 	"github.com/engagerocketco/templates-api-svc/internal/handler"
-	natsHandler "github.com/engagerocketco/templates-api-svc/internal/nats"
+	"github.com/engagerocketco/templates-api-svc/internal/pg"
 	"github.com/engagerocketco/templates-api-svc/internal/repository/postgres"
-	natsClient "github.com/engagerocketco/templates-api-svc/internal/service/natsservice"
 	"github.com/engagerocketco/templates-api-svc/internal/service/templateservice"
 
 	_ "github.com/lib/pq"
@@ -30,7 +24,6 @@ import (
 type BaseApp struct {
 	cfg           *config.Config
 	server        *handler.Server
-	natsServer    *natsHandler.Server
 	logger        *zap.Logger
 	shutdownFuncs []func(context.Context) error
 }
@@ -48,18 +41,6 @@ func NewBaseApp(ctx context.Context, logger *zap.Logger, cfg *config.Config) (*B
 
 	b.shutdownFuncs = append(b.shutdownFuncs, dbConn.Shutdown)
 
-	natsConn, err := nats.Connect(cfg.NatsConfig.ConnString())
-	if err != nil {
-		return nil, fmt.Errorf("nats: unable to connect to the nats server: %w", err)
-	}
-
-	b.natsServer = natsHandler.NewServer(natsConn, logger)
-	b.shutdownFuncs = append(b.shutdownFuncs, b.natsServer.Shutdown)
-
-	entityClient := ns.NewEntityClient(natsConn)
-	permissionClient := ns.NewPermissionClient(natsConn)
-	natsService := natsClient.NewNatsService(entityClient, permissionClient, logger)
-
 	db, err := sql.Open("postgres", cfg.PostgresConfig.ConnectionString())
 	if err != nil {
 		return nil, fmt.Errorf("postgres: unable to connect to the database: %w", err)
@@ -70,14 +51,9 @@ func NewBaseApp(ctx context.Context, logger *zap.Logger, cfg *config.Config) (*B
 		return nil, fmt.Errorf("repository: unable to initialize a postgres repository: %w", err)
 	}
 
-	templateService := templateservice.New(postgresRepo, natsService, logger)
+	templateService := templateservice.New(postgresRepo, logger)
 
-	validateToken, err := auth0.EnsureValidToken(cfg, logger)
-	if err != nil {
-		return nil, fmt.Errorf("auth0: token validation: %w", err)
-	}
-
-	b.server = handler.NewServer(cfg, templateService, logger, validateToken)
+	b.server = handler.NewServer(cfg, templateService, logger)
 
 	return b, nil
 }

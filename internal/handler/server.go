@@ -7,8 +7,8 @@ import (
 
 	httpSwagger "github.com/swaggo/http-swagger"
 
-	"github.com/engagerocketco/go-common/config"
 	"github.com/engagerocketco/templates-api-svc/docs"
+	"github.com/engagerocketco/templates-api-svc/internal/config"
 	"github.com/engagerocketco/templates-api-svc/internal/handler/transport"
 	"github.com/engagerocketco/templates-api-svc/internal/service/templateservice"
 
@@ -37,6 +37,11 @@ func NewServer(
 	r := mux.NewRouter().PathPrefix("/api/v1/template").Subrouter()
 
 	r.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
+
+	r.Handle(
+		"/ping",
+		transport.MakePingHandler(logger),
+	).Methods(http.MethodGet)
 
 	srv.Handler = r
 	return &srv

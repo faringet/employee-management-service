@@ -12,16 +12,14 @@ import (
 )
 
 type Employees struct {
-	ID              int32 `sql:"primary_key"`
-	PrefferedName   *string
-	FullName        *string
-	Identity        *string
-	FristSeen       *time.Time
-	HubspotObjectID *string
-	HrisRemoteID    *string
-	UpdatedAt       *time.Time
-	CreatedAt       *time.Time
-	UpdatedBy       *int32
-	CreatedBy       *int32
-	Email           *string
+	ID            int32 `sql:"primary_key"`
+	FullName      *string
+	UniqueID      *string
+	UpdatedAt     *time.Time
+	CreatedAt     *time.Time
+	UpdatedBy     *int32
+	CreatedBy     *int32
+	Email         *string
+	ManagerEmail  *string
+	PreferredName *string
 }

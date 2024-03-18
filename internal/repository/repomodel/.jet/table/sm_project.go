@@ -20,8 +20,6 @@ type smProjectTable struct {
 	ID                       postgres.ColumnInteger
 	Name                     postgres.ColumnString
 	ProjecttypeID            postgres.ColumnInteger
-	Test                     postgres.ColumnBool
-	StatusID                 postgres.ColumnInteger
 	MinResponses             postgres.ColumnInteger
 	DateEnd                  postgres.ColumnTimestamp
 	AccessLink               postgres.ColumnString
@@ -29,9 +27,6 @@ type smProjectTable struct {
 	CreatedAt                postgres.ColumnTimestamp
 	UpdatedBy                postgres.ColumnInteger
 	CreatedBy                postgres.ColumnInteger
-	EntityID                 postgres.ColumnInteger
-	FrequencyID              postgres.ColumnInteger
-	IsTriggersRequired       postgres.ColumnBool
 	DateAttributeMilestoneID postgres.ColumnInteger
 
 	AllColumns     postgres.ColumnList
@@ -76,8 +71,6 @@ func newSmProjectTableImpl(schemaName, tableName, alias string) smProjectTable {
 		IDColumn                       = postgres.IntegerColumn("id")
 		NameColumn                     = postgres.StringColumn("name")
 		ProjecttypeIDColumn            = postgres.IntegerColumn("projecttype_id")
-		TestColumn                     = postgres.BoolColumn("test")
-		StatusIDColumn                 = postgres.IntegerColumn("status_id")
 		MinResponsesColumn             = postgres.IntegerColumn("min_responses")
 		DateEndColumn                  = postgres.TimestampColumn("date_end")
 		AccessLinkColumn               = postgres.StringColumn("access_link")
@@ -85,12 +78,9 @@ func newSmProjectTableImpl(schemaName, tableName, alias string) smProjectTable {
 		CreatedAtColumn                = postgres.TimestampColumn("created_at")
 		UpdatedByColumn                = postgres.IntegerColumn("updated_by")
 		CreatedByColumn                = postgres.IntegerColumn("created_by")
-		EntityIDColumn                 = postgres.IntegerColumn("entity_id")
-		FrequencyIDColumn              = postgres.IntegerColumn("frequency_id")
-		IsTriggersRequiredColumn       = postgres.BoolColumn("is_triggers_required")
 		DateAttributeMilestoneIDColumn = postgres.IntegerColumn("date_attribute_milestone_id")
-		allColumns                     = postgres.ColumnList{IDColumn, NameColumn, ProjecttypeIDColumn, TestColumn, StatusIDColumn, MinResponsesColumn, DateEndColumn, AccessLinkColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, EntityIDColumn, FrequencyIDColumn, IsTriggersRequiredColumn, DateAttributeMilestoneIDColumn}
-		mutableColumns                 = postgres.ColumnList{NameColumn, ProjecttypeIDColumn, TestColumn, StatusIDColumn, MinResponsesColumn, DateEndColumn, AccessLinkColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, EntityIDColumn, FrequencyIDColumn, IsTriggersRequiredColumn, DateAttributeMilestoneIDColumn}
+		allColumns                     = postgres.ColumnList{IDColumn, NameColumn, ProjecttypeIDColumn, MinResponsesColumn, DateEndColumn, AccessLinkColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, DateAttributeMilestoneIDColumn}
+		mutableColumns                 = postgres.ColumnList{NameColumn, ProjecttypeIDColumn, MinResponsesColumn, DateEndColumn, AccessLinkColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, DateAttributeMilestoneIDColumn}
 	)
 
 	return smProjectTable{
@@ -100,8 +90,6 @@ func newSmProjectTableImpl(schemaName, tableName, alias string) smProjectTable {
 		ID:                       IDColumn,
 		Name:                     NameColumn,
 		ProjecttypeID:            ProjecttypeIDColumn,
-		Test:                     TestColumn,
-		StatusID:                 StatusIDColumn,
 		MinResponses:             MinResponsesColumn,
 		DateEnd:                  DateEndColumn,
 		AccessLink:               AccessLinkColumn,
@@ -109,9 +97,6 @@ func newSmProjectTableImpl(schemaName, tableName, alias string) smProjectTable {
 		CreatedAt:                CreatedAtColumn,
 		UpdatedBy:                UpdatedByColumn,
 		CreatedBy:                CreatedByColumn,
-		EntityID:                 EntityIDColumn,
-		FrequencyID:              FrequencyIDColumn,
-		IsTriggersRequired:       IsTriggersRequiredColumn,
 		DateAttributeMilestoneID: DateAttributeMilestoneIDColumn,
 
 		AllColumns:     allColumns,

@@ -17,23 +17,18 @@ type smSurveyRecepientsTable struct {
 	postgres.Table
 
 	// Columns
-	ID                   postgres.ColumnInteger
-	SurveyID             postgres.ColumnInteger
-	EmployeeID           postgres.ColumnInteger
-	Automatical          postgres.ColumnBool
-	AccessCode           postgres.ColumnString
-	UpdatedAt            postgres.ColumnTimestamp
-	CreatedBy            postgres.ColumnInteger
-	CreatedAt            postgres.ColumnTimestamp
-	UpdatedBy            postgres.ColumnInteger
-	CustomPreferredName  postgres.ColumnString
-	CustomEmail          postgres.ColumnString
-	FullName             postgres.ColumnString
-	DateStartMilestone   postgres.ColumnTimestamp
-	Answered             postgres.ColumnBool
-	Answers              postgres.ColumnString
-	NextReminderDatetime postgres.ColumnTimestamp
-	ReminderID           postgres.ColumnInteger
+	ID                postgres.ColumnInteger
+	SurveyID          postgres.ColumnInteger
+	EmployeeID        postgres.ColumnInteger
+	Automatical       postgres.ColumnBool
+	AccessCode        postgres.ColumnString
+	UpdatedAt         postgres.ColumnTimestamp
+	CreatedBy         postgres.ColumnInteger
+	CreatedAt         postgres.ColumnTimestamp
+	UpdatedBy         postgres.ColumnInteger
+	MilestoneDateSend postgres.ColumnTimestamp
+	Answered          postgres.ColumnBool
+	Answers           postgres.ColumnString
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -74,48 +69,38 @@ func newSmSurveyRecepientsTable(schemaName, tableName, alias string) *SmSurveyRe
 
 func newSmSurveyRecepientsTableImpl(schemaName, tableName, alias string) smSurveyRecepientsTable {
 	var (
-		IDColumn                   = postgres.IntegerColumn("id")
-		SurveyIDColumn             = postgres.IntegerColumn("survey_id")
-		EmployeeIDColumn           = postgres.IntegerColumn("employee_id")
-		AutomaticalColumn          = postgres.BoolColumn("automatical")
-		AccessCodeColumn           = postgres.StringColumn("access_code")
-		UpdatedAtColumn            = postgres.TimestampColumn("updated_at")
-		CreatedByColumn            = postgres.IntegerColumn("created_by")
-		CreatedAtColumn            = postgres.TimestampColumn("created_at")
-		UpdatedByColumn            = postgres.IntegerColumn("updated_by")
-		CustomPreferredNameColumn  = postgres.StringColumn("custom_preferred_name")
-		CustomEmailColumn          = postgres.StringColumn("custom_email")
-		FullNameColumn             = postgres.StringColumn("full_name")
-		DateStartMilestoneColumn   = postgres.TimestampColumn("date_start_milestone")
-		AnsweredColumn             = postgres.BoolColumn("answered")
-		AnswersColumn              = postgres.StringColumn("answers")
-		NextReminderDatetimeColumn = postgres.TimestampColumn("next_reminder_datetime")
-		ReminderIDColumn           = postgres.IntegerColumn("reminder_id")
-		allColumns                 = postgres.ColumnList{IDColumn, SurveyIDColumn, EmployeeIDColumn, AutomaticalColumn, AccessCodeColumn, UpdatedAtColumn, CreatedByColumn, CreatedAtColumn, UpdatedByColumn, CustomPreferredNameColumn, CustomEmailColumn, FullNameColumn, DateStartMilestoneColumn, AnsweredColumn, AnswersColumn, NextReminderDatetimeColumn, ReminderIDColumn}
-		mutableColumns             = postgres.ColumnList{SurveyIDColumn, EmployeeIDColumn, AutomaticalColumn, AccessCodeColumn, UpdatedAtColumn, CreatedByColumn, CreatedAtColumn, UpdatedByColumn, CustomPreferredNameColumn, CustomEmailColumn, FullNameColumn, DateStartMilestoneColumn, AnsweredColumn, AnswersColumn, NextReminderDatetimeColumn, ReminderIDColumn}
+		IDColumn                = postgres.IntegerColumn("id")
+		SurveyIDColumn          = postgres.IntegerColumn("survey_id")
+		EmployeeIDColumn        = postgres.IntegerColumn("employee_id")
+		AutomaticalColumn       = postgres.BoolColumn("automatical")
+		AccessCodeColumn        = postgres.StringColumn("access_code")
+		UpdatedAtColumn         = postgres.TimestampColumn("updated_at")
+		CreatedByColumn         = postgres.IntegerColumn("created_by")
+		CreatedAtColumn         = postgres.TimestampColumn("created_at")
+		UpdatedByColumn         = postgres.IntegerColumn("updated_by")
+		MilestoneDateSendColumn = postgres.TimestampColumn("milestone_date_send")
+		AnsweredColumn          = postgres.BoolColumn("answered")
+		AnswersColumn           = postgres.StringColumn("answers")
+		allColumns              = postgres.ColumnList{IDColumn, SurveyIDColumn, EmployeeIDColumn, AutomaticalColumn, AccessCodeColumn, UpdatedAtColumn, CreatedByColumn, CreatedAtColumn, UpdatedByColumn, MilestoneDateSendColumn, AnsweredColumn, AnswersColumn}
+		mutableColumns          = postgres.ColumnList{SurveyIDColumn, EmployeeIDColumn, AutomaticalColumn, AccessCodeColumn, UpdatedAtColumn, CreatedByColumn, CreatedAtColumn, UpdatedByColumn, MilestoneDateSendColumn, AnsweredColumn, AnswersColumn}
 	)
 
 	return smSurveyRecepientsTable{
 		Table: postgres.NewTable(schemaName, tableName, alias, allColumns...),
 
 		//Columns
-		ID:                   IDColumn,
-		SurveyID:             SurveyIDColumn,
-		EmployeeID:           EmployeeIDColumn,
-		Automatical:          AutomaticalColumn,
-		AccessCode:           AccessCodeColumn,
-		UpdatedAt:            UpdatedAtColumn,
-		CreatedBy:            CreatedByColumn,
-		CreatedAt:            CreatedAtColumn,
-		UpdatedBy:            UpdatedByColumn,
-		CustomPreferredName:  CustomPreferredNameColumn,
-		CustomEmail:          CustomEmailColumn,
-		FullName:             FullNameColumn,
-		DateStartMilestone:   DateStartMilestoneColumn,
-		Answered:             AnsweredColumn,
-		Answers:              AnswersColumn,
-		NextReminderDatetime: NextReminderDatetimeColumn,
-		ReminderID:           ReminderIDColumn,
+		ID:                IDColumn,
+		SurveyID:          SurveyIDColumn,
+		EmployeeID:        EmployeeIDColumn,
+		Automatical:       AutomaticalColumn,
+		AccessCode:        AccessCodeColumn,
+		UpdatedAt:         UpdatedAtColumn,
+		CreatedBy:         CreatedByColumn,
+		CreatedAt:         CreatedAtColumn,
+		UpdatedBy:         UpdatedByColumn,
+		MilestoneDateSend: MilestoneDateSendColumn,
+		Answered:          AnsweredColumn,
+		Answers:           AnswersColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

@@ -17,18 +17,16 @@ type employeesTable struct {
 	postgres.Table
 
 	// Columns
-	ID              postgres.ColumnInteger
-	PrefferedName   postgres.ColumnString
-	FullName        postgres.ColumnString
-	Identity        postgres.ColumnString
-	FristSeen       postgres.ColumnTimestamp
-	HubspotObjectID postgres.ColumnString
-	HrisRemoteID    postgres.ColumnString
-	UpdatedAt       postgres.ColumnTimestamp
-	CreatedAt       postgres.ColumnTimestamp
-	UpdatedBy       postgres.ColumnInteger
-	CreatedBy       postgres.ColumnInteger
-	Email           postgres.ColumnString
+	ID            postgres.ColumnInteger
+	FullName      postgres.ColumnString
+	UniqueID      postgres.ColumnString
+	UpdatedAt     postgres.ColumnTimestamp
+	CreatedAt     postgres.ColumnTimestamp
+	UpdatedBy     postgres.ColumnInteger
+	CreatedBy     postgres.ColumnInteger
+	Email         postgres.ColumnString
+	ManagerEmail  postgres.ColumnString
+	PreferredName postgres.ColumnString
 
 	AllColumns     postgres.ColumnList
 	MutableColumns postgres.ColumnList
@@ -69,38 +67,34 @@ func newEmployeesTable(schemaName, tableName, alias string) *EmployeesTable {
 
 func newEmployeesTableImpl(schemaName, tableName, alias string) employeesTable {
 	var (
-		IDColumn              = postgres.IntegerColumn("id")
-		PrefferedNameColumn   = postgres.StringColumn("preffered_name")
-		FullNameColumn        = postgres.StringColumn("full_name")
-		IdentityColumn        = postgres.StringColumn("identity")
-		FristSeenColumn       = postgres.TimestampColumn("frist_seen")
-		HubspotObjectIDColumn = postgres.StringColumn("hubspot_object_id")
-		HrisRemoteIDColumn    = postgres.StringColumn("hris_remote_id")
-		UpdatedAtColumn       = postgres.TimestampColumn("updated_at")
-		CreatedAtColumn       = postgres.TimestampColumn("created_at")
-		UpdatedByColumn       = postgres.IntegerColumn("updated_by")
-		CreatedByColumn       = postgres.IntegerColumn("created_by")
-		EmailColumn           = postgres.StringColumn("email")
-		allColumns            = postgres.ColumnList{IDColumn, PrefferedNameColumn, FullNameColumn, IdentityColumn, FristSeenColumn, HubspotObjectIDColumn, HrisRemoteIDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, EmailColumn}
-		mutableColumns        = postgres.ColumnList{PrefferedNameColumn, FullNameColumn, IdentityColumn, FristSeenColumn, HubspotObjectIDColumn, HrisRemoteIDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, EmailColumn}
+		IDColumn            = postgres.IntegerColumn("id")
+		FullNameColumn      = postgres.StringColumn("full_name")
+		UniqueIDColumn      = postgres.StringColumn("unique_id")
+		UpdatedAtColumn     = postgres.TimestampColumn("updated_at")
+		CreatedAtColumn     = postgres.TimestampColumn("created_at")
+		UpdatedByColumn     = postgres.IntegerColumn("updated_by")
+		CreatedByColumn     = postgres.IntegerColumn("created_by")
+		EmailColumn         = postgres.StringColumn("email")
+		ManagerEmailColumn  = postgres.StringColumn("manager_email")
+		PreferredNameColumn = postgres.StringColumn("preferred_name")
+		allColumns          = postgres.ColumnList{IDColumn, FullNameColumn, UniqueIDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, EmailColumn, ManagerEmailColumn, PreferredNameColumn}
+		mutableColumns      = postgres.ColumnList{FullNameColumn, UniqueIDColumn, UpdatedAtColumn, CreatedAtColumn, UpdatedByColumn, CreatedByColumn, EmailColumn, ManagerEmailColumn, PreferredNameColumn}
 	)
 
 	return employeesTable{
 		Table: postgres.NewTable(schemaName, tableName, alias, allColumns...),
 
 		//Columns
-		ID:              IDColumn,
-		PrefferedName:   PrefferedNameColumn,
-		FullName:        FullNameColumn,
-		Identity:        IdentityColumn,
-		FristSeen:       FristSeenColumn,
-		HubspotObjectID: HubspotObjectIDColumn,
-		HrisRemoteID:    HrisRemoteIDColumn,
-		UpdatedAt:       UpdatedAtColumn,
-		CreatedAt:       CreatedAtColumn,
-		UpdatedBy:       UpdatedByColumn,
-		CreatedBy:       CreatedByColumn,
-		Email:           EmailColumn,
+		ID:            IDColumn,
+		FullName:      FullNameColumn,
+		UniqueID:      UniqueIDColumn,
+		UpdatedAt:     UpdatedAtColumn,
+		CreatedAt:     CreatedAtColumn,
+		UpdatedBy:     UpdatedByColumn,
+		CreatedBy:     CreatedByColumn,
+		Email:         EmailColumn,
+		ManagerEmail:  ManagerEmailColumn,
+		PreferredName: PreferredNameColumn,
 
 		AllColumns:     allColumns,
 		MutableColumns: mutableColumns,

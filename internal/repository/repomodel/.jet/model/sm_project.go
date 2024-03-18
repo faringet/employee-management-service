@@ -15,8 +15,6 @@ type SmProject struct {
 	ID                       int32 `sql:"primary_key"`
 	Name                     *string
 	ProjecttypeID            int32
-	Test                     *bool
-	StatusID                 int32
 	MinResponses             *int32
 	DateEnd                  *time.Time
 	AccessLink               *string
@@ -24,8 +22,5 @@ type SmProject struct {
 	CreatedAt                *time.Time
 	UpdatedBy                *int32
 	CreatedBy                *int32
-	EntityID                 int32
-	FrequencyID              *int32
-	IsTriggersRequired       *bool
 	DateAttributeMilestoneID *int32
 }

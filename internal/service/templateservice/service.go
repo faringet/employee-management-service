@@ -2,23 +2,28 @@ package templateservice
 
 import (
 	"github.com/engagerocketco/templates-api-svc/internal/repository"
-	"github.com/engagerocketco/templates-api-svc/internal/service/natsservice"
 	"go.uber.org/zap"
 )
 
 type Service interface {
+	Attributes
+	EmployeeOptionAttributes
+	Employees
+	SmProject
+	SmProjectType
+	SmAttributeTriggers
+	SmSurvey
+	SmSurveyStatus
 }
 
 type service struct {
-	repo        repository.Repository
-	natsService natsservice.Service
-	logger      *zap.Logger
+	repo   repository.Repository
+	logger *zap.Logger
 }
 
-func New(repo repository.Repository, natsService natsservice.Service, logger *zap.Logger) Service {
+func New(repo repository.Repository, logger *zap.Logger) Service {
 	return &service{
-		repo:        repo,
-		natsService: natsService,
-		logger:      logger,
+		repo:   repo,
+		logger: logger,
 	}
 }

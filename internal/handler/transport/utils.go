@@ -1,45 +1,13 @@
 package transport
 
 import (
-	"context"
-	"errors"
 	"net/http"
 	"strconv"
 
-	"github.com/engagerocketco/go-common/auth0"
-	"github.com/engagerocketco/go-common/consts"
 	"github.com/engagerocketco/templates-api-svc/internal/handler/endpoints"
 	ie "github.com/engagerocketco/templates-api-svc/pkg/errors"
 	"go.uber.org/zap"
 )
-
-func getEmail(ctx context.Context) (string, error) {
-	var (
-		email string
-		err   error
-	)
-	if email, err = auth0.GetEmail(ctx); err != nil {
-		switch {
-		case errors.Is(err, auth0.NoValidatedClaimsErr):
-			return "", ie.Error{
-				Code:    http.StatusInternalServerError,
-				Message: "could not find claims",
-			}
-		case errors.Is(err, auth0.NoCustomClaimsErr):
-			return "", ie.Error{
-				Code:    http.StatusForbidden,
-				Message: "user email not found",
-			}
-		default:
-			return "", ie.Error{
-				Code:    http.StatusInternalServerError,
-				Message: "unknown error from claims validation",
-			}
-		}
-	}
-
-	return email, nil
-}
 
 func parsePagination(r *http.Request, req *endpoints.PaginationRequest) error {
 	if sortBy := r.URL.Query().Get("sort_by"); sortBy != "" {
@@ -82,7 +50,7 @@ func parsePagination(r *http.Request, req *endpoints.PaginationRequest) error {
 			})
 		}
 	} else {
-		req.Limit = consts.GetRequestLimit
+		req.Limit = 500
 	}
 
 	if len(offsetStr) > 0 {
@@ -97,7 +65,7 @@ func parsePagination(r *http.Request, req *endpoints.PaginationRequest) error {
 			})
 		}
 	} else {
-		req.Offset = consts.GetRequestOffset
+		req.Offset = 0
 	}
 
 	if len(errDetails) > 0 {

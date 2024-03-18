@@ -5,13 +5,6 @@ go 1.21.6
 require (
 	github.com/caarlos0/env/v10 v10.0.0
 	github.com/doug-martin/goqu/v9 v9.19.0
-	github.com/engagerocketco/go-common/auth0 v0.0.5
-	github.com/engagerocketco/go-common/config v0.0.6
-	github.com/engagerocketco/go-common/logger v0.0.0-20240118125758-81b054ef89bd
-	github.com/engagerocketco/go-common/network v0.0.1
-	github.com/engagerocketco/go-common/ns v0.0.15
-	github.com/engagerocketco/go-common/pg v0.0.0-20240121175306-0d7d2c57fe28
-	github.com/engagerocketco/go-common/tests v0.0.8
 	github.com/go-kit/kit v0.13.0
 	github.com/go-playground/validator/v10 v10.17.0
 	github.com/gorilla/mux v1.8.1
@@ -24,7 +17,6 @@ require (
 )
 
 require (
-	github.com/engagerocketco/go-common/consts v0.0.3
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
 )
@@ -36,7 +28,6 @@ require (
 	github.com/auth0/go-jwt-middleware/v2 v2.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
-	github.com/engagerocketco/go-common/sendgrid v0.0.2 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/go-jet/jet/v2 v2.10.1
 	github.com/go-kit/log v0.2.1 // indirect

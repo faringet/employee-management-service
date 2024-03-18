@@ -12,21 +12,16 @@ import (
 )
 
 type SmSurveyRecepients struct {
-	ID                   int32 `sql:"primary_key"`
-	SurveyID             int32
-	EmployeeID           *int32
-	Automatical          *bool
-	AccessCode           *string
-	UpdatedAt            *time.Time
-	CreatedBy            *int32
-	CreatedAt            *time.Time
-	UpdatedBy            *int32
-	CustomPreferredName  *string
-	CustomEmail          *string
-	FullName             *string
-	DateStartMilestone   *time.Time
-	Answered             *bool
-	Answers              *string
-	NextReminderDatetime *time.Time
-	ReminderID           *int32
+	ID                int32 `sql:"primary_key"`
+	SurveyID          int32
+	EmployeeID        *int32
+	Automatical       *bool
+	AccessCode        *string
+	UpdatedAt         *time.Time
+	CreatedBy         *int32
+	CreatedAt         *time.Time
+	UpdatedBy         *int32
+	MilestoneDateSend *time.Time
+	Answered          *bool
+	Answers           *string
 }

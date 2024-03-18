@@ -12,29 +12,17 @@ import (
 )
 
 type SmSurvey struct {
-	ID                    int32 `sql:"primary_key"`
-	Name                  *string
-	UpdatedAt             *time.Time
-	CreatedAt             *time.Time
-	UpdatedBy             *int32
-	CreatedBy             *int32
-	FinishMessage         *string
-	StatusID              int32
-	ProjectID             int32
-	MilestoneDay          *int32
-	StartDateAttributeID  *int32
-	CommsHeaderLogo       *string
-	CommsIsSendReport     *bool
-	CommsTimeSendReport   *time.Time
-	SurveyDateStart       *time.Time
-	SurveyDateEnd         *time.Time
-	CommsReminderDaysID   *int32
-	Number                *string
-	QuestionaryEstimation *string
-	QuestionarySurvey     *string
-	QuestionaryTypeID     *int32
-	TimestartMilestone    *time.Time
-	LaunchedLastDate      *time.Time
-	DatatimeNextstart     *time.Time
-	LeaveDateEmpty        *bool
+	ID                       int32 `sql:"primary_key"`
+	Name                     *string
+	UpdatedAt                *time.Time
+	CreatedAt                *time.Time
+	UpdatedBy                *int32
+	CreatedBy                *int32
+	StatusID                 int32
+	ProjectID                int32
+	MilestoneDay             *int32
+	DateAttributeMilestoneID *int32
+	SurveyDateStart          *time.Time
+	SurveyDateEnd            *time.Time
+	TimestartMilestone       *time.Time
 }

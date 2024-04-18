@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"github.com/engagerocketco/templates-api-svc/internal/handler/transport/models"
 	"net/http"
 
 	"go.uber.org/zap"
@@ -22,6 +23,10 @@ func NewTransportLogger(logger *zap.Logger) {
 func encodeError(_ context.Context, err error, w http.ResponseWriter) {
 	var responseError ie.Error
 	errors.As(err, &responseError)
+
+	if responseError.Code == 0 {
+		responseError.Code = http.StatusInternalServerError
+	}
 
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(responseError.Code)
@@ -46,6 +51,14 @@ func encodeResponse(ctx context.Context, w http.ResponseWriter, response interfa
 		return nil
 	}
 	return json.NewEncoder(w).Encode(response)
+}
+
+func employeeDecodeRequest(_ context.Context, r *http.Request) (interface{}, error) {
+	var employees []*models.Employee
+	if err := json.NewDecoder(r.Body).Decode(&employees); err != nil {
+		return nil, err
+	}
+	return employees, nil
 }
 
 func finalyzer(ctx context.Context, code int, r *http.Request) {

@@ -25,14 +25,6 @@ POSTGRES_PASSWORD - Database Password
 POSTGRES_DB - Database Name
 ```
 
-### NATS
-
-##### Required
-
-```
-NATS_HOST - NATS Address
-NATS_PORT - NATS Port
-```
 
 ##### Optional
 

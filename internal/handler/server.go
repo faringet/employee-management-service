@@ -43,6 +43,11 @@ func NewServer(
 		transport.MakePingHandler(logger),
 	).Methods(http.MethodGet)
 
+	r.Handle(
+		"/employee",
+		transport.MakeEmployeeHandler(logger, templateService),
+	).Methods(http.MethodPost)
+
 	srv.Handler = r
 	return &srv
 }

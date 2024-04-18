@@ -39,6 +39,8 @@ func NewBaseApp(ctx context.Context, logger *zap.Logger, cfg *config.Config) (*B
 		return nil, fmt.Errorf("postgres: unable to connect to the database: %w", err)
 	}
 
+	logger.Info("Successfully connected to the PostgreSQL database")
+
 	b.shutdownFuncs = append(b.shutdownFuncs, dbConn.Shutdown)
 
 	db, err := sql.Open("postgres", cfg.PostgresConfig.ConnectionString())
